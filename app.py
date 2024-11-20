@@ -27,11 +27,11 @@ def predict_thyroid_disease():
 
         # Define the required fields based on the selected features
         required_fields = [
-            'on_thyroxine', 'query_on_thyroxine', 'on_antithyroid_medication', 
-            'sick', 'pregnant', 'thyroid_surgery', 'I131_treatment', 
-            'query_hypothyroid', 'query_hyperthyroid', 'lithium', 'goitre', 
-            'tumor', 'hypopituitary', 'psych', 'TSH_measured', 'T3_measured', 
-            'TT4_measured', 'T4U_measured', 'FTI_measured', 'TBG_measured'
+           'age', 'sex', 'on_thyroxine', 'query_on_thyroxine', 'on_antithyroid_medication', 
+           'sick', 'pregnant', 'thyroid_surgery', 'I131_treatment', 'query_hypothyroid', 
+            'query_hyperthyroid', 'lithium', 'goitre', 'tumor', 'hypopituitary', 'psych', 
+              'TSH_measured', 'T3_measured', 'TT4_measured', 'T4U_measured', 'FTI_measured', 
+                'TBG_measured', 'TSH', 'T3', 'TT4', 'T4U', 'FTI', 'TBG'
         ]
         
         # Check if all required fields are present in the request
