@@ -27,11 +27,11 @@ def predict_thyroid_disease():
 
         # Define the required fields based on the selected features
         required_fields = [
-           'age', 'sex', 'on_thyroxine', 'query_on_thyroxine', 'on_antithyroid_medication', 
+           'on_thyroxine', 'query_on_thyroxine', 'on_antithyroid_medication', 
            'sick', 'pregnant', 'thyroid_surgery', 'I131_treatment', 'query_hypothyroid', 
             'query_hyperthyroid', 'lithium', 'goitre', 'tumor', 'hypopituitary', 'psych', 
               'TSH_measured', 'T3_measured', 'TT4_measured', 'T4U_measured', 'FTI_measured', 
-                'TBG_measured', 'TSH', 'T3', 'TT4', 'T4U', 'FTI', 'TBG'
+                'TBG_measured'
         ]
         
         # Check if all required fields are present in the request
@@ -59,8 +59,7 @@ def predict_thyroid_disease():
             data['TT4_measured'], 
             data['T4U_measured'], 
             data['FTI_measured'], 
-            data['TBG_measured'],
-            data['TSH'], data['T3'], data['TT4'], data['T4U'], data['FTI'], data['TBG']
+            data['TBG_measured']
         ]])
 
         # If your model requires scaling, apply it here (uncomment if you have a scaler)
