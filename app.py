@@ -1,9 +1,14 @@
 from flask import Flask, request, jsonify
 import pickle
 import numpy as np
+from flask_cors import CORS
+
+# Enable CORS for all routes
+
 
 # Initialize Flask app
 app = Flask(__name__)
+CORS(app)
 
 # Load the saved model and scaler (if you have one)
 with open('best_model.pkl', 'rb') as f:
