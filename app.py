@@ -14,6 +14,10 @@ CORS(app)
 with open('best_model.pkl', 'rb') as f:
     model = pickle.load(f)
 
+@app.route('/', methods=['GET'])
+def home():
+    return jsonify({"message": "Flask app is running!"})
+
 # Define a prediction route
 @app.route('/predict', methods=['POST'])
 def predict_thyroid_disease():
