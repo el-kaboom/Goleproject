@@ -11,7 +11,7 @@ app = Flask(__name__)
 CORS(app)
 
 # Load the saved model and scaler (if you have one)
-with open('best_model.pkl', 'rb') as f:
+with open('best_model__.pkl', 'rb') as f:
     model = pickle.load(f)
 
 @app.route('/', methods=['GET'])
