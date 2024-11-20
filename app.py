@@ -59,7 +59,8 @@ def predict_thyroid_disease():
             data['TT4_measured'], 
             data['T4U_measured'], 
             data['FTI_measured'], 
-            data['TBG_measured']
+            data['TBG_measured'],
+            data['TSH'], data['T3'], data['TT4'], data['T4U'], data['FTI'], data['TBG']
         ]])
 
         # If your model requires scaling, apply it here (uncomment if you have a scaler)
