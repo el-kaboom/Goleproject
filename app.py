@@ -26,47 +26,54 @@ def predict_thyroid_disease():
         data = request.get_json()
 
         # Define the required fields based on the selected features
-        required_fields = [
-           'on_thyroxine', 'query_on_thyroxine', 'on_antithyroid_medication', 
-           'sick', 'pregnant', 'thyroid_surgery', 'I131_treatment', 'query_hypothyroid', 
-            'query_hyperthyroid', 'lithium', 'goitre', 'tumor', 'hypopituitary', 'psych', 
-              'TSH_measured', 'T3_measured', 'TT4_measured', 'T4U_measured', 'FTI_measured', 
-                'TBG_measured'
-        ]
-        
-        # Check if all required fields are present in the request
-        if not all(field in data for field in required_fields):
-            return jsonify({'error': 'Missing fields'}), 400
+       # Define the updated list of required features (with all 28 features)
+required_fields = [
+    'on_thyroxine', 'query_on_thyroxine', 'on_antithyroid_medication', 'sick', 
+    'pregnant', 'thyroid_surgery', 'I131_treatment', 'query_hypothyroid', 'query_hyperthyroid',
+    'lithium', 'goitre', 'tumor', 'hypopituitary', 'psych', 'TSH_measured', 'T3_measured',
+    'TT4_measured', 'T4U_measured', 'FTI_measured', 'TBG_measured', 
+    # Add more required fields here (make sure this list matches your model's training data)
+    'age', 'sex', 'TSH', 'T3', 'TT4', 'T4U', 'FTI', 'TBG'
+]
 
-        # Extract the relevant features from the input data
-        features = np.array([[
-            data['on_thyroxine'], 
-            data['query_on_thyroxine'], 
-            data['on_antithyroid_medication'], 
-            data['sick'], 
-            data['pregnant'], 
-            data['thyroid_surgery'], 
-            data['I131_treatment'], 
-            data['query_hypothyroid'], 
-            data['query_hyperthyroid'], 
-            data['lithium'], 
-            data['goitre'], 
-            data['tumor'], 
-            data['hypopituitary'], 
-            data['psych'], 
-            data['TSH_measured'], 
-            data['T3_measured'], 
-            data['TT4_measured'], 
-            data['T4U_measured'], 
-            data['FTI_measured'], 
-            data['TBG_measured']
-        ]])
+# Ensure that all 28 required fields are present in the data
+if not all(field in data for field in required_fields):
+    return jsonify({'error': 'Missing fields'}), 400
 
-        # If your model requires scaling, apply it here (uncomment if you have a scaler)
-        # features_scaled = scaler.transform(features)
+# Extract the relevant features from the input data
+features = np.array([[ 
+    data['on_thyroxine'], 
+    data['query_on_thyroxine'], 
+    data['on_antithyroid_medication'], 
+    data['sick'], 
+    data['pregnant'], 
+    data['thyroid_surgery'], 
+    data['I131_treatment'], 
+    data['query_hypothyroid'], 
+    data['query_hyperthyroid'], 
+    data['lithium'], 
+    data['goitre'], 
+    data['tumor'], 
+    data['hypopituitary'], 
+    data['psych'], 
+    data['TSH_measured'], 
+    data['T3_measured'], 
+    data['TT4_measured'], 
+    data['T4U_measured'], 
+    data['FTI_measured'], 
+    data['TBG_measured'],
+    data['age'],        # Add the additional features here
+    data['sex'], 
+    data['TSH'], 
+    data['T3'], 
+    data['TT4'], 
+    data['T4U'], 
+    data['FTI'], 
+    data['TBG']
+]])
 
-        # Make prediction (assuming no scaling for now)
-        prediction = model.predict(features)[0]
+# Proceed with prediction as usual
+prediction = model.predict(features)[0]
 
         # Return the result based on prediction
         if prediction == 1:  # Assuming model returns 1 for disease and 0 for no disease
